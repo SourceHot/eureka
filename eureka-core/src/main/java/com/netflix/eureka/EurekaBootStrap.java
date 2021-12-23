@@ -16,11 +16,6 @@
 
 package com.netflix.eureka;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import java.util.Date;
-
 import com.netflix.appinfo.ApplicationInfoManager;
 import com.netflix.appinfo.CloudInstanceConfig;
 import com.netflix.appinfo.DataCenterInfo;
@@ -46,6 +41,10 @@ import com.netflix.eureka.resources.DefaultServerCodecs;
 import com.netflix.eureka.resources.ServerCodecs;
 import com.netflix.eureka.util.EurekaMonitors;
 import com.thoughtworks.xstream.XStream;
+import java.util.Date;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -110,10 +109,13 @@ public class EurekaBootStrap implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent event) {
         try {
+            // 初始化eureka环境
             initEurekaEnvironment();
+            // 初始化eureka服务上下文
             initEurekaServerContext();
-
+            // 获取servlet上下文
             ServletContext sc = event.getServletContext();
+            // 设置属性
             sc.setAttribute(EurekaServerContext.class.getName(), serverContext);
         } catch (Throwable e) {
             logger.error("Cannot bootstrap eureka server :", e);
@@ -122,19 +124,24 @@ public class EurekaBootStrap implements ServletContextListener {
     }
 
     /**
-     * Users can override to initialize the environment themselves.
+     * Users can override to initialize the environment themselves. 初始化eureka环境
      */
     protected void initEurekaEnvironment() throws Exception {
         logger.info("Setting the eureka configuration..");
-
+        // 读取eureka.datacenter数据
         String dataCenter = ConfigurationManager.getConfigInstance().getString(EUREKA_DATACENTER);
+        // 如果eureka.datacenter属性数据为空则设置archaius.deployment.datacenter属性为default，反之则设置为eureka.datacenter属性
         if (dataCenter == null) {
-            logger.info("Eureka data center value eureka.datacenter is not set, defaulting to default");
-            ConfigurationManager.getConfigInstance().setProperty(ARCHAIUS_DEPLOYMENT_DATACENTER, DEFAULT);
+            logger.info(
+                "Eureka data center value eureka.datacenter is not set, defaulting to default");
+            ConfigurationManager.getConfigInstance()
+                .setProperty(ARCHAIUS_DEPLOYMENT_DATACENTER, DEFAULT);
         } else {
             ConfigurationManager.getConfigInstance().setProperty(ARCHAIUS_DEPLOYMENT_DATACENTER, dataCenter);
         }
+        // 获取eureka环境属性
         String environment = ConfigurationManager.getConfigInstance().getString(EUREKA_ENVIRONMENT);
+        // 环境属性为空将设置属性为test
         if (environment == null) {
             ConfigurationManager.getConfigInstance().setProperty(ARCHAIUS_DEPLOYMENT_ENVIRONMENT, TEST);
             logger.info("Eureka environment value eureka.environment is not set, defaulting to test");
