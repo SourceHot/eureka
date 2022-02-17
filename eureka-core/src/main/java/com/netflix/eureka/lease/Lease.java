@@ -33,7 +33,18 @@ import com.netflix.eureka.registry.AbstractInstanceRegistry;
 public class Lease<T> {
 
     enum Action {
-        Register, Cancel, Renew
+        /**
+         * 服务注册
+         */
+        Register,
+        /**
+         * 服务下线
+         */
+        Cancel,
+        /**
+         * 服务续约
+         */
+        Renew
     };
 
     public static final int DEFAULT_DURATION_IN_SECS = 90;

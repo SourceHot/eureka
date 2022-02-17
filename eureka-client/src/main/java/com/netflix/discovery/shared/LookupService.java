@@ -22,6 +22,7 @@ import com.netflix.appinfo.InstanceInfo;
 /**
  * Lookup service for finding active instances.
  *
+ * 查找服务
  * @author Karthik Ranganathan, Greg Kim.
  * @param <T> for backward compatibility
 
@@ -32,6 +33,7 @@ public interface LookupService<T> {
      * Returns the corresponding {@link Application} object which is basically a
      * container of all registered <code>appName</code> {@link InstanceInfo}s.
      *
+     * 根据应用名称获取应用信息
      * @param appName
      * @return a {@link Application} or null if we couldn't locate any app of
      *         the requested appName
@@ -42,6 +44,7 @@ public interface LookupService<T> {
      * Returns the {@link Applications} object which is basically a container of
      * all currently registered {@link Application}s.
      *
+     * 获取所有应用信息
      * @return {@link Applications}
      */
     Applications getApplications();
@@ -51,6 +54,7 @@ public interface LookupService<T> {
      * in id. A single {@link InstanceInfo} can possibly be registered w/ more
      * than one {@link Application}s
      *
+     * 根据id获取实例集合
      * @param id
      * @return {@link List} of {@link InstanceInfo}s or
      *         {@link java.util.Collections#emptyList()}
@@ -58,6 +62,7 @@ public interface LookupService<T> {
     List<InstanceInfo> getInstancesById(String id);
 
     /**
+     * 获取下一个可用的eureka服务实例
      * Gets the next possible server to process the requests from the registry
      * information received from eureka.
      *

@@ -43,6 +43,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Karthik Ranganathan, Greg Kim
  *
+ * 应用信息管理器
  */
 @Singleton
 public class ApplicationInfoManager {

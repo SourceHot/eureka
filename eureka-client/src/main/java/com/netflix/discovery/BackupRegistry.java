@@ -30,7 +30,7 @@ import com.netflix.discovery.shared.Applications;
  * </p>
  *
  * @author Karthik Ranganathan
- *
+ * 备份注册器
  */
 @ImplementedBy(NotImplementedRegistryImpl.class)
 public interface BackupRegistry {

@@ -38,6 +38,8 @@ import com.google.inject.ImplementedBy;
  *
  * @author Karthik Ranganathan
  *
+ * eureka实例配置
+ *
  */
 @ImplementedBy(CloudInstanceConfig.class)
 public interface EurekaInstanceConfig {

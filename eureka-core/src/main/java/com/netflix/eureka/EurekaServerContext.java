@@ -22,18 +22,39 @@ import com.netflix.eureka.registry.PeerAwareInstanceRegistry;
 import com.netflix.eureka.resources.ServerCodecs;
 
 /**
+ * eureka服务上下文
  * @author David Liu
  */
 public interface EurekaServerContext {
 
+    /**
+     * 初始化
+     * @throws Exception
+     */
     void initialize() throws Exception;
 
+    /**
+     * 关闭
+     * @throws Exception
+     */
     void shutdown() throws Exception;
 
+    /**
+     * 获取eureka服务配置
+     * @return
+     */
     EurekaServerConfig getServerConfig();
 
+    /**
+     * 获取eureka节点集合
+     * @return
+     */
     PeerEurekaNodes getPeerEurekaNodes();
 
+    /**
+     * 服务编码器
+     * @return
+     */
     ServerCodecs getServerCodecs();
 
     PeerAwareInstanceRegistry getRegistry();

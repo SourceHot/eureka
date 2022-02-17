@@ -112,6 +112,7 @@ class InstanceInfoReplicator implements Runnable {
         }
     }
 
+    // 服务注册
     public void run() {
         try {
             discoveryClient.refreshInstanceInfo();

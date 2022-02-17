@@ -3,6 +3,7 @@ package com.netflix.discovery;
 import com.netflix.appinfo.InstanceInfo;
 
 /**
+ * 状态变更事件
  * Event containing the latest instance status information.  This event
  * is sent to the {@link com.netflix.eventbus.spi.EventBus} by {@link EurekaClient) whenever
  * a status change is identified from the remote Eureka server response.

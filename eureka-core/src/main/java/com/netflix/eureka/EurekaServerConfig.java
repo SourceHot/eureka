@@ -34,6 +34,7 @@ import com.netflix.eureka.aws.AwsBindingStrategy;
  * otherwise specified.
  * </p>
  *
+ * eureka服务配置
  * @author Karthik Ranganathan
  *
  */

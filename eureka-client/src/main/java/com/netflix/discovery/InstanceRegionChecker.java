@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * 实例区检查类
  * @author Nitesh Kant
  */
 public class InstanceRegionChecker {
